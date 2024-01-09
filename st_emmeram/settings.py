@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Module for the settings of the game St. Emmeram."""
 import numpy
+import pathlib
 
 # Plyer settings
 
@@ -22,4 +23,4 @@ HALLWAY_CORNER = numpy.array([
 ])
 
 # Walls
-walls_folder = "st_emmeram/assets/walls"
+walls_folder = pathlib.Path("st_emmeram/assets/walls") # mby use absolute path?
