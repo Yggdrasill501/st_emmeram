@@ -14,7 +14,7 @@ class GameLoop:
         """Initialize the game loop."""
         pygame.init()
         self.width, self.height = 800, 600
-        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         pygame.display.set_caption('Saint Emmeram')
 
         # self.background_image = pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/background/pixel.png")
@@ -22,7 +22,7 @@ class GameLoop:
         self.dice1 = Dice((50, 50))
         self.dice2 = Dice((200, 50))
 
-        self.player = Player((80, 80), (self.width, self.height))
+        self.player = Player((self.width, self.height))
 
         self.font = pygame.font.Font(None, 36)
         self.sum_of_dice = 0
@@ -54,7 +54,9 @@ class GameLoop:
                     self.player.move("left")
                 if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                     self.player.move("right")
-            self.draw_background()
+
+            # self.draw_background()
+            self.screen.fill((255, 255, 255))
 
             self.dice1.draw(self.screen)
             self.dice2.draw(self.screen)
