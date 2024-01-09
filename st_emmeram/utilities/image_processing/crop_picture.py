@@ -8,6 +8,14 @@ logging.basicConfig(level=logging.ERROR)
 
 
 def crop(input_image: str, sections: int, name: str) -> None:
+    """Crop the input image into sections and save them.
+
+    :param input_image: str,
+    :param sections: int,
+    :param name: str,
+    :return: None,
+    :rtype: None.
+    """
     try:
         with Image.open(input_image) as img:
             width, height = img.size
@@ -31,4 +39,4 @@ def crop(input_image: str, sections: int, name: str) -> None:
 
 
 if __name__ == '__main__':
-    crop(input_image="st_emmeram/wall.png", sections=8, name="wall")
+    crop(input_image="wall.png", sections=8, name="wall")
