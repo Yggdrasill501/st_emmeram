@@ -8,11 +8,16 @@ from st_emmeram.player.player import Player
 
 
 class GameLoop:
-    def __init__(self):
+    """Class for the game loop."""
+
+    def __init__(self) -> None:
+        """Initialize the game loop."""
         pygame.init()
         self.width, self.height = 800, 600
         self.screen = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption('Dice Roll Game')
+        pygame.display.set_caption('Saint Emmeram')
+
+        # self.background_image = pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/background/pixel.png")
 
         self.dice1 = Dice((50, 50))
         self.dice2 = Dice((200, 50))
@@ -22,7 +27,14 @@ class GameLoop:
         self.font = pygame.font.Font(None, 36)
         self.sum_of_dice = 0
 
-    def run(self):
+    # def draw_background(self):
+    #     """Draw the background."""
+    #     for y in range(0, self.height, self.background_image.get_height()):
+    #         for x in range(0, self.width, self.background_image.get_width()):
+    #             self.screen.blit(self.background_image, (x, y))
+
+    def run(self) -> None:
+        """Run the game loop."""
         running = True
         while running:
             for event in pygame.event.get():
@@ -42,8 +54,8 @@ class GameLoop:
                     self.player.move("left")
                 if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                     self.player.move("right")
+            self.draw_background()
 
-            self.screen.fill((0, 128, 255))
             self.dice1.draw(self.screen)
             self.dice2.draw(self.screen)
 
