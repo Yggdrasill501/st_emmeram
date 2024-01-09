@@ -20,5 +20,3 @@ HALLWAY_CORNER = numpy.array([
     [1, 1, _],
     [_, _, _]
 ])
-
-HALLWAY_CROSS = numpy.array([
