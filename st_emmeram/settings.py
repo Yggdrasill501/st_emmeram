@@ -20,3 +20,6 @@ HALLWAY_CORNER = numpy.array([
     [1, 1, _],
     [_, _, _]
 ])
+
+# Walls
+walls_folder = "st_emmeram/assets/walls"
