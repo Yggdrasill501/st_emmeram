@@ -7,6 +7,7 @@ from st_emmeram.dice.dice import Dice
 from st_emmeram.player.player import Player
 from st_emmeram.map.map import Map
 from st_emmeram.menu.menu import Menu
+from st_emmeram.music_player.music_player import MusicPlayer
 
 logging.basicConfig(level=logging.INFO)
 
@@ -20,7 +21,9 @@ class GameLoop:
         self.width, self.height = 800, 600
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         pygame.display.set_caption('Saint Emmeram')
-        self.menu = Menu(self.screen)
+        self.music_player = MusicPlayer(music_file="assets/music/theme.wav")
+
+        self.menu = Menu(self.screen, self.music_player)
 
         self.exit_button = pygame.Rect(10, 10, 150, 50)
 
@@ -43,6 +46,7 @@ class GameLoop:
 
         self.in_menu = True
 
+
     # def draw_background(self):
     #     """Draw the background."""
     #     for y in range(0, self.height, self.background_image.get_height()):
@@ -62,7 +66,7 @@ class GameLoop:
                 self.game_loop()
 
     def run_menu(self):
-        self.menu = Menu(self.screen)
+        self.menu = Menu(self.screen, self.music_player)
         while self.menu.is_running():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
