@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Module containing the map piece class."""
 import pygame
+import random
 
 
 class MapPiece:
@@ -8,7 +9,9 @@ class MapPiece:
 
     def __init__(self, position, size=(75, 75)) -> None:
         """Initialize the map piece."""
-        self.image = pygame.transform.scale(pygame.image.load("/st_emmeram/assets/map/road1.png"), size)
+        self.images = [pygame.transform.scale(pygame.image.load(f"/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/map/road{i}.png"), size) for i in range(1, 5)]
+
+        self.image = random.choice(self.images)
         self.rect = self.image.get_rect(topleft=position)
 
     def draw(self, screen):

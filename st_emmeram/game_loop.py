@@ -59,13 +59,13 @@ class GameLoop:
 
             keys = pygame.key.get_pressed()
 
-            if keys[pygame.K_UP] or keys[pygame.K_w]:
+            if keys[pygame.K_w]:
                 self.player.move("up")
-            if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            if keys[pygame.K_s]:
                 self.player.move("down")
-            if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            if keys[pygame.K_a]:
                 self.player.move("left")
-            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            if keys[pygame.K_d]:
                 self.player.move("right")
 
 
