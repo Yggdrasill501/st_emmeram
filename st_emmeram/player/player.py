@@ -14,9 +14,9 @@ class Player:
         center_x = self.screen_width // 2 - self.size[0] // 2
         center_y = self.screen_height // 2 - self.size[1] // 2
 
-        self.image_centered = pygame.transform.scale(pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/player/vales_centered.png"), size=self.size)
-        self.image_right = pygame.transform.scale(pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/player/vales_right.png"), size=self.size)
-        self.image_left = pygame.transform.scale(pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/player/vales_left.png"), size=self.size)
+        self.image_centered = pygame.transform.scale(pygame.image.load("assets/player/vales_centered.png"), size=self.size)
+        self.image_right = pygame.transform.scale(pygame.image.load("assets/player/vales_right.png"), size=self.size)
+        self.image_left = pygame.transform.scale(pygame.image.load("assets/player/vales_left.png"), size=self.size)
 
         self.image = self.image_centered
 

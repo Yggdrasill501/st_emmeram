@@ -6,6 +6,7 @@ import sys
 from st_emmeram.dice.dice import Dice
 from st_emmeram.player.player import Player
 from st_emmeram.map.map import Map
+from st_emmeram.menu.menu import Menu
 
 logging.basicConfig(level=logging.INFO)
 
@@ -19,6 +20,8 @@ class GameLoop:
         self.width, self.height = 800, 600
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         pygame.display.set_caption('Saint Emmeram')
+        self.menu = Menu(self.screen)
+
 
         # self.background_image = pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/background/pixel.png")
 
@@ -47,7 +50,24 @@ class GameLoop:
     #         for y in range(0, self.height, self.map_piece_size):
     #             pygame.draw.rect(self.screen, (255, 0, 0), (x, y, self.map_piece_size, self.map_piece_size), 1)
 
-    def run(self) -> None:
+    def run(self):
+        # Show the menu
+        while self.menu.is_running():
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                self.menu.handle_event(event)
+
+            self.screen.fill((255, 255, 255))  # Clear screen
+            self.menu.draw()  # Draw the menu
+            pygame.display.flip()
+
+        # Main game loop
+        self.game_loop()
+
+    def game_loop(self) -> None:
         """Run the game loop."""
         running = True
         while running:
