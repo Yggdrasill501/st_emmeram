@@ -9,7 +9,7 @@ class Dice:
 
     def __init__(self, position, size: tuple = (100, 100)) -> None:
         """Initialize the dice."""
-        self.images = [pygame.transform.scale(pygame.image.load(f"/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/dice/{i}.png"), size=size) for i in range(1, 7)]
+        self.images = [pygame.transform.scale(pygame.image.load(f"assets/dice/{i}.png"), size=size) for i in range(1, 7)]
         self.current_value = 1
         self.rect = self.images[0].get_rect(topleft=position)
         self.rolled = False

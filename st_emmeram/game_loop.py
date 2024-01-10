@@ -6,6 +6,7 @@ import sys
 from st_emmeram.dice.dice import Dice
 from st_emmeram.player.player import Player
 from st_emmeram.map.map import Map
+from st_emmeram.menu.menu import Menu
 
 logging.basicConfig(level=logging.INFO)
 
@@ -19,6 +20,10 @@ class GameLoop:
         self.width, self.height = 800, 600
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         pygame.display.set_caption('Saint Emmeram')
+        self.menu = Menu(self.screen)
+
+        self.exit_button = pygame.Rect(10, 10, 150, 50)
+
 
         # self.background_image = pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/background/pixel.png")
 
@@ -36,6 +41,8 @@ class GameLoop:
 
         self.clock = pygame.time.Clock()
 
+        self.in_menu = True
+
     # def draw_background(self):
     #     """Draw the background."""
     #     for y in range(0, self.height, self.background_image.get_height()):
@@ -47,7 +54,30 @@ class GameLoop:
     #         for y in range(0, self.height, self.map_piece_size):
     #             pygame.draw.rect(self.screen, (255, 0, 0), (x, y, self.map_piece_size, self.map_piece_size), 1)
 
-    def run(self) -> None:
+    def run(self):
+        while True:  # Main loop to keep the game running
+            if self.in_menu:
+                self.run_menu()
+            else:
+                self.game_loop()
+
+    def run_menu(self):
+        self.menu = Menu(self.screen)
+        while self.menu.is_running():
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                self.menu.handle_event(event)
+
+            self.screen.fill((255, 255, 255))
+            self.menu.draw()
+            pygame.display.flip()
+
+        self.in_menu = False
+
+    def game_loop(self) -> None:
         """Run the game loop."""
         running = True
         while running:
@@ -55,6 +85,11 @@ class GameLoop:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.exit_button.collidepoint(event.pos):
+                        self.in_menu = True
+                        return
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.dice1.handle_click(event.pos):
@@ -78,6 +113,8 @@ class GameLoop:
                 self.player.move("left")
             if keys[pygame.K_d]:
                 self.player.move("right")
+
+
 
             # player_center_x, player_center_y = self.player.rect.center
             # grid_x = player_center_x - (player_center_x % 70)
@@ -109,6 +146,12 @@ class GameLoop:
 
             sum_text = self.font.render(f'Sum: {self.sum_of_dice}', True, (0, 0, 0))
             self.screen.blit(sum_text, (50, 150))
+
+            pygame.draw.rect(self.screen, (255, 0, 0), self.exit_button)
+            font = pygame.font.Font(None, 36)
+            exit_text = font.render('Exit to Menu', True, (255, 255, 255))
+            exit_text_rect = exit_text.get_rect(center=self.exit_button.center)
+            self.screen.blit(exit_text, exit_text_rect)
 
             pygame.display.flip()
 
