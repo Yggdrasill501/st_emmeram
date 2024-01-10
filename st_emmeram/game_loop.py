@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """Module for the game loop."""
+import logging
 import pygame
 import sys
 from st_emmeram.dice.dice import Dice
 from st_emmeram.player.player import Player
 from st_emmeram.map.map import Map
+
+logging.basicConfig(level=logging.INFO)
 
 
 class GameLoop:
@@ -23,6 +26,9 @@ class GameLoop:
         self.dice2 = Dice((200, 50))
 
         self.game_map = Map((self.width, self.height))
+
+        self.map_piece_size = 75
+
         self.player = Player((self.width, self.height))
 
         self.font = pygame.font.Font(None, 36)
@@ -35,6 +41,11 @@ class GameLoop:
     #     for y in range(0, self.height, self.background_image.get_height()):
     #         for x in range(0, self.width, self.background_image.get_width()):
     #             self.screen.blit(self.background_image, (x, y))
+
+    # def draw_debug_grid(self):
+    #     for x in range(0, self.width, self.map_piece_size):
+    #         for y in range(0, self.height, self.map_piece_size):
+    #             pygame.draw.rect(self.screen, (255, 0, 0), (x, y, self.map_piece_size, self.map_piece_size), 1)
 
     def run(self) -> None:
         """Run the game loop."""
@@ -68,6 +79,22 @@ class GameLoop:
             if keys[pygame.K_d]:
                 self.player.move("right")
 
+            # player_center_x, player_center_y = self.player.rect.center
+            # grid_x = player_center_x - (player_center_x % 70)
+            # grid_y = player_center_y - (player_center_y % 70)
+            # player_map_piece_position = (grid_x, grid_y)
+            #
+            # current_map_piece = self.game_map.get_piece_type_at_position(player_map_piece_position)
+            #
+            # if current_map_piece:
+            #     if keys[pygame.K_w] and current_map_piece.is_move_allowed("up"):
+            #         self.player.move("up")
+            #     if keys[pygame.K_s] and current_map_piece.is_move_allowed("down"):
+            #         self.player.move("down")
+            #     if keys[pygame.K_a] and current_map_piece.is_move_allowed("left"):
+            #         self.player.move("left")
+            #     if keys[pygame.K_d] and current_map_piece.is_move_allowed("right"):
+            #         self.player.move("right")
 
             # self.draw_background()
             self.screen.fill((255, 255, 255))
@@ -84,7 +111,6 @@ class GameLoop:
             self.screen.blit(sum_text, (50, 150))
 
             pygame.display.flip()
-
 
         pygame.quit()
         sys.exit()

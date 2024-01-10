@@ -11,8 +11,8 @@ class Player:
         self.size = (50, 50)
         self.screen_width, self.screen_height = screen_size
 
-        middle_position = (self.screen_width // 2 - self.size[0] // 2,
-                           self.screen_height // 2 - self.size[1] // 2)
+        center_x = self.screen_width // 2 - self.size[0] // 2
+        center_y = self.screen_height // 2 - self.size[1] // 2
 
         self.image_centered = pygame.transform.scale(pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/player/vales_centered.png"), size=self.size)
         self.image_right = pygame.transform.scale(pygame.image.load("/Users/yggdrasill501/Projects/code/python/st_emmeram/st_emmeram/assets/player/vales_right.png"), size=self.size)
@@ -20,7 +20,7 @@ class Player:
 
         self.image = self.image_centered
 
-        self.rect = self.image.get_rect(topleft=middle_position)
+        self.rect = pygame.Rect(center_x, center_y, self.size[0], self.size[1])
         self.speed = 5
 
     def move(self, direction) -> None:
