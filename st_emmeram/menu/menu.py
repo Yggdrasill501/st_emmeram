@@ -10,19 +10,21 @@ class Menu:
         """Initialize the menu."""
         self.screen = screen
         self.running = True
-        self.start_button = pygame.Rect(100, 100, 200, 50)
+
+        button_size = (200, 100)
+
+        self.start_button_image = pygame.transform.scale(pygame.image.load('assets/menu/start_logo.png'), button_size)
+        self.start_button_rect = self.start_button_image.get_rect()
+
+        self.start_button_rect.center = (screen.get_width() // 2, screen.get_height() // 2)
 
     def draw(self):
         """Draw the menu."""
-        pygame.draw.rect(self.screen, (0, 128, 0), self.start_button)  # Draw a green button
-        font = pygame.font.Font(None, 36)
-        text = font.render('Start Game', True, (255, 255, 255))
-        text_rect = text.get_rect(center=self.start_button.center)
-        self.screen.blit(text, text_rect)
+        self.screen.blit(self.start_button_image, self.start_button_rect)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.start_button.collidepoint(event.pos):
+            if self.start_button_rect.collidepoint(event.pos):
                 self.running = False
 
     def is_running(self):
