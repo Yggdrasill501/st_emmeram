@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Module for the game loop."""
-
 import pygame
 import sys
 from st_emmeram.dice.dice import Dice
 from st_emmeram.player.player import Player
+from st_emmeram.map.map import Map
 
 
 class GameLoop:
@@ -22,10 +22,13 @@ class GameLoop:
         self.dice1 = Dice((50, 50))
         self.dice2 = Dice((200, 50))
 
+        self.game_map = Map((self.width, self.height))
         self.player = Player((self.width, self.height))
 
         self.font = pygame.font.Font(None, 36)
         self.sum_of_dice = 0
+
+        self.clock = pygame.time.Clock()
 
     # def draw_background(self):
     #     """Draw the background."""
@@ -37,6 +40,7 @@ class GameLoop:
         """Run the game loop."""
         running = True
         while running:
+            self.clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
@@ -64,8 +68,12 @@ class GameLoop:
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.player.move("right")
 
+
             # self.draw_background()
             self.screen.fill((255, 255, 255))
+
+            self.game_map.update_map((self.player.rect.x, self.player.rect.y))
+            self.game_map.draw(self.screen)
 
             self.dice1.draw(self.screen)
             self.dice2.draw(self.screen)
