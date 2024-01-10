@@ -34,7 +34,6 @@ class Map:
         map_piece_position = (grid_x, grid_y)
 
         if map_piece_position not in self.map_pieces:
-            print(f"Adding new map piece at: {map_piece_position}")  # Debug print
             self.add_map_piece(map_piece_position)
 
     def draw(self, screen):
