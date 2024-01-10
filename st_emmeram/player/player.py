@@ -21,7 +21,7 @@ class Player:
         self.image = self.image_centered
 
         self.rect = self.image.get_rect(topleft=middle_position)
-        self.speed = 10
+        self.speed = 5
 
     def move(self, direction) -> None:
         """Move the player."""

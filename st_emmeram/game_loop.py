@@ -42,18 +42,27 @@ class GameLoop:
                     running = False
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.dice1.on_click(event.pos) or self.dice2.on_click(event.pos):
-                        self.sum_of_dice = Dice.get_sum(self.dice1, self.dice2)
+                    if self.dice1.handle_click(event.pos):
+                        if self.dice2.has_been_rolled():
+                            self.dice2.reset()
+                    if self.dice2.handle_click(event.pos):
+                        if self.dice1.has_been_rolled():
+                            self.dice1.reset()
 
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_UP] or keys[pygame.K_w]:
-                    self.player.move("up")
-                if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-                    self.player.move("down")
-                if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-                    self.player.move("left")
-                if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-                    self.player.move("right")
+                    sum_of_dice = Dice.calculate_sum(self.dice1, self.dice2)
+                    if sum_of_dice is not None:
+                        self.sum_of_dice = sum_of_dice
+
+            keys = pygame.key.get_pressed()
+
+            if keys[pygame.K_UP] or keys[pygame.K_w]:
+                self.player.move("up")
+            if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+                self.player.move("down")
+            if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+                self.player.move("left")
+            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+                self.player.move("right")
 
             # self.draw_background()
             self.screen.fill((255, 255, 255))
@@ -68,5 +77,8 @@ class GameLoop:
 
             pygame.display.flip()
 
+
         pygame.quit()
         sys.exit()
+
+
