@@ -5,3 +5,6 @@
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/st_emmeram.iml
 /.idea/vcs.xml
+
+.DS_Store
+__pychace__
