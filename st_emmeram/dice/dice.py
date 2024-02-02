@@ -9,7 +9,10 @@ class Dice:
 
     def __init__(self, position, size: tuple = (100, 100)) -> None:
         """Initialize the dice."""
-        self.images = [pygame.transform.scale(pygame.image.load(f"assets/dice/{i}.png"), size=size) for i in range(1, 7)]
+        self.images = [
+                pygame.transform.scale(pygame.image.load(f"assets/dice/{i}.png"), 
+                                       size=size) for i in range(1, 7)
+                ]
         self.current_value = 1
         self.rect = self.images[0].get_rect(topleft=position)
         self.rolled = False
@@ -48,3 +51,4 @@ class Dice:
         if dice1.has_been_rolled() and dice2.has_been_rolled():
             return dice1.get_value() + dice2.get_value()
         return None
+
