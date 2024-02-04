@@ -1,4 +1,4 @@
-monsters: dict = {
+sprites_dict: dict = {
     "chest": {
         "skin": "assets/monsters/chest.png",
         "Amount": 10,
@@ -73,6 +73,16 @@ monsters: dict = {
         "damage": 12,
         "drop": {
             "type": "open-chest",
+            "skin": "",
+            "damage": 0
+        }
+    },
+    "dragon":{
+        "skin": "",
+        "Amount": 1,
+        "damage": 15,
+        "drop":{
+            "type": "winning crest",
             "skin": "",
             "damage": 0
         }
