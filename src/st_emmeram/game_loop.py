@@ -3,11 +3,11 @@
 import logging
 import pygame
 import sys
-from st_emmeram.dice.dice import Dice
-from st_emmeram.player.player import Player
-from st_emmeram.map.map import Map
-from st_emmeram.menu.menu import Menu
-from st_emmeram.music_player.music_player import MusicPlayer
+from src.st_emmeram.dice.dice import Dice
+from src.st_emmeram.player.player import Player
+from src.st_emmeram.map.map import Map
+from src.st_emmeram.menu.menu import Menu
+from src.st_emmeram.music_player.music_player import MusicPlayer
 
 logging.basicConfig(level=logging.INFO)
 

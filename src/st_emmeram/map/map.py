@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module for the map."""
-import pygame
-from st_emmeram.map.map_piece import MapPiece
+from src.st_emmeram.map.map_piece import MapPiece
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')

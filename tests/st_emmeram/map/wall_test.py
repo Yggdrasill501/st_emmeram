@@ -4,8 +4,8 @@ import os
 import unittest
 import logging
 from PIL import Image
-from st_emmeram.map.wall import Wall
-from st_emmeram.settings import walls_folder
+from src.st_emmeram.map.wall import Wall
+from src.st_emmeram.settings import walls_folder
 
 MODULE_LOGGER = logging.getLogger(__name__)
 MODULE_LOGGER.setLevel(logging.INFO)

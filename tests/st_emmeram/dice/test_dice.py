@@ -2,7 +2,7 @@
 """Test module for the Dice class."""
 
 import unittest
-from st_emmeram.dice.dice import Dice
+from src.st_emmeram.dice.dice import Dice
 
 
 class TestDice(unittest.TestCase):
