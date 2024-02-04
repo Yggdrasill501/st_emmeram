@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Test module for the GameLoop class."""
 import unittest
-from src.st_emmeram import GameLoop
+from src.st_emmeram_original import GameLoop
 
 
 class TestGameLoop(unittest.TestCase):

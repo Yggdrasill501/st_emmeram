@@ -23,4 +23,4 @@ HALLWAY_CORNER = numpy.array([
 ])
 
 # Walls
-walls_folder = pathlib.Path("st_emmeram/assets/walls") # mby use absolute path?
+walls_folder = pathlib.Path("st_emmeram_original/assets/walls") # mby use absolute path?

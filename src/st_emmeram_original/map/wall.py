@@ -3,7 +3,7 @@
 import random
 import os
 from PIL import Image
-from src.st_emmeram.settings import walls_folder
+from src.st_emmeram_original.settings import walls_folder
 
 
 class Wall:
