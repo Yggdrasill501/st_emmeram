@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 class GameLoop:
     def __init__(self):
         pass
