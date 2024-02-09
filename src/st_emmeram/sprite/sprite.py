@@ -1,9 +1,5 @@
-import abc
 import random
-import json
-import logging
-
-ModuleLogger = logging.getLogger(__name__)
+from src.utilities.file_managment.json_to_dict import get_dict
 
 
 class Sprite:
@@ -13,22 +9,8 @@ class Sprite:
 
         :rtype: None.
         """
-        self.sprites_dict = self._get_dict(file="config.json")
+        self.sprites_dict = get_dict(file="config.json")
         self.sprite_list = self.sprite_list()
-
-    @abc.abstractmethod
-    def _get_dict(file: str) -> dict:
-        """From config creates Dict.
-
-        :return: config dict,
-        :rtype: dict
-        """
-        try:
-            with open(file, 'r') as file:
-                return json.load(file)
-
-        except FileNotFoundError as E:
-            ModuleLogger.error(msg=f"{file}, {E}")
 
     def sprite_list(self) -> list:
         return [sprite for sprite, amount in self.sprites_dict.items() for _ in range(amount["Amount"])]
