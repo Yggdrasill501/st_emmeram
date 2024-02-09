@@ -1,4 +1,4 @@
-sprites_dict: dict = {
+{
     "chest": {
         "skin": "assets/monsters/chest.png",
         "Amount": 10,
